@@ -1,14 +1,31 @@
-<img align="right" width="150" height="150" top="100" src="./public/readme.jpg">
+# Sloads Demo • [![tests](https://github.com/0xevm/sloads_demo/actions/workflows/ci.yml/badge.svg?label=tests)](https://github.com/0xevm/sloads_demo/actions/workflows/ci.yml) ![license](https://img.shields.io/github/license/0xevm/sloads_demo?label=license) ![solidity](https://img.shields.io/badge/solidity-^0.8.19-green)
 
-# femplate • [![tests](https://github.com/refcell/femplate/actions/workflows/ci.yml/badge.svg?label=tests)](https://github.com/refcell/femplate/actions/workflows/ci.yml) ![license](https://img.shields.io/github/license/refcell/femplate?label=license) ![solidity](https://img.shields.io/badge/solidity-^0.8.17-lightgrey)
-
-A **Clean**, **Robust** Template for Foundry Projects.
+A demo for test smart contract's dynamic data's storage slot's, such as array, map, using [Foundry](https://getfoundry.sh/).
 
 ### Usage
 
+**Install Forge**
+
+see https://getfoundry.sh/
+
 **Building & Testing**
 
-Build the foundry project with `forge build`. Then you can run tests with `forge test`.
+```sh
+$ forge build
+
+$ forge test -vvv
+```
+
+**Get the storage slot**
+```sh
+$ forge inspect ./src/Greeter.sol:Greeter storage --pretty
+```
+
+**Debug to see the stack&memory&storage**
+
+```sh
+$ forge test --debug testSetGm
+```
 
 **Deployment & Verification**
 
@@ -49,6 +66,7 @@ test
 - [forge-std](https://github.com/brockelmore/forge-std)
 - [forge-template](https://github.com/foundry-rs/forge-template)
 - [foundry-toolchain](https://github.com/foundry-rs/foundry-toolchain)
+- [ETH Beijing](https://github.com/WTFAcademy/ETHBeijing)
 
 
 ### Disclaimer
