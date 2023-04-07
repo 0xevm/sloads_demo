@@ -21,4 +21,4 @@ jobs:
           cargo build --release -p foundry-cli --bin forge
           export PATH="$(pwd)/target/release:$PATH"
       - name: tests
-        run:  forge test
+        run:  forge test -vvv

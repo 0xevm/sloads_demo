@@ -13,26 +13,31 @@ contract RecordMappingTest is Test {
 
     
     function testRecordMapping() public {
+        emit log_string("start recording");
         // Start recording
         vm.startMappingRecording();
 
+        emit log_string("init map data");
         // Verify Records
         target.setData(address(this), 100);
         target.setNestedData(99, 10);
         target.setNestedData(98, 10);
 
+        emit log_string("test mapping length");
         bytes32 dataSlot = bytes32(uint(1));
         bytes32 nestDataSlot = bytes32(uint(2));
         assertEq(uint(vm.getMappingLength(address(target), dataSlot)), 1, "number of data is incorrect");
         assertEq(uint(vm.getMappingLength(address(this), dataSlot)), 0, "number of data is incorrect");
         assertEq(uint(vm.getMappingLength(address(target), nestDataSlot)), 2, "number of nestedData is incorrect");
 
+        emit log_string("test mapping slot & parents");
         bytes32 dataValueSlot = vm.getMappingSlotAt(address(target), dataSlot, 0);
         assertEq(vm.getMappingParentOf(address(target), dataValueSlot), dataSlot, "parent of data[i] is incorrect");
         assertGt(uint(dataValueSlot), 0);
         assertEq(uint(vm.load(address(target), dataValueSlot)), 100);
 
         for (uint k; k < vm.getMappingLength(address(target), nestDataSlot); k++) {
+            emit log_named_uint("test nestdata, k:", k);
             bytes32 subSlot = vm.getMappingSlotAt(address(target), nestDataSlot, k);
             uint i = vm.getMappingKeyOf(address(target), subSlot);
             assertEq(vm.getMappingParentOf(address(target), subSlot), nestDataSlot, "parent of nestedData[i][j] is incorrect");
