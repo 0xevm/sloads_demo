@@ -16,4 +16,10 @@ jobs:
       - name: dependencies
         run: forge install
       - name: tests
-        run: forge test
+        run:  |
+          git clone https://github.com/0xevm/foundry.git
+          cd foundry
+          git checkout beijing-eth
+          cargo build --release -p foundry-cli --bin forge
+          cd ..
+          ./foundry/targe/release/forge test
