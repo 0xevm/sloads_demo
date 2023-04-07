@@ -14,12 +14,11 @@ jobs:
         with:
           version: nightly
       - name: dependencies
-        run: forge install
-      - name: tests
-        run:  |
+        run: |
           git clone https://github.com/0xevm/foundry.git
           cd foundry
           git checkout beijing-eth
           cargo build --release -p foundry-cli --bin forge
-          cd ..
-          ./foundry/targe/release/forge test
+          export PATH="$(pwd)/target/release:$PATH"
+      - name: tests
+        run:  forge test
