@@ -18,7 +18,7 @@ $ forge test -vvv
 
 **Get the storage slot**
 ```sh
-$ forge inspect ./src/Greeter.sol:Greeter storage --pretty
+$ forge inspect ./src/RecordMapping.sol:RecordMapping storage --pretty
 ```
 
 **Debug to see the stack&memory&storage**
@@ -27,6 +27,25 @@ $ forge inspect ./src/Greeter.sol:Greeter storage --pretty
 $ forge test --debug testSetGm
 ```
 
+**Test with new Forge**
+```sh
+$ cd foundry/
+
+$ cargo build --release -p foundry-cli --bin forge   
+
+
+
+$ cd sloads_demo/
+
+$ export PATH="/Users/flyq/workspace/github/0xevm/foundry/target/release:$PATH"
+
+$ forge clean
+
+$ forge install 0xevm/forge-std
+
+$
+
+```
 ### Notable Mentions
 
 - [femplate](https://github.com/refcell/femplate)
