@@ -24,7 +24,7 @@ $ forge inspect ./src/RecordMapping.sol:RecordMapping storage --pretty
 **Debug to see the stack&memory&storage**
 
 ```sh
-$ forge test --debug testSetGm
+$ forge test --debug testRecordMapping
 ```
 
 **Test with new Forge**
@@ -41,9 +41,9 @@ $ export PATH="/Users/flyq/workspace/github/0xevm/foundry/target/release:$PATH"
 
 $ forge clean
 
-$ forge install 0xevm/forge-std
+$ forge install 0xevm/forge-std-new
 
-$
+$ forge test -vvv
 
 ```
 ### Notable Mentions
