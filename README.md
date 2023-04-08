@@ -37,6 +37,7 @@ $ cargo build --release -p foundry-cli --bin forge
 
 $ cd sloads_demo/
 
+# !! update the PATH to your foundry build release path
 $ export PATH="/Users/flyq/workspace/github/0xevm/foundry/target/release:$PATH"
 
 $ forge clean
@@ -46,6 +47,28 @@ $ forge install 0xevm/forge-std-new
 $ forge test -vvv
 
 ```
+
+### New cheatcode
+
+```solidity
+    /// Let foundry-evm start recording Storage slot related data.
+    function startMappingRecording() external;
+
+    /// Get the length of a map in a smart contract.
+    /// @param `target`, the address of smart contract.
+    /// @param `slot`, the slot of a map or a array.
+    function getMappingLength(address target, bytes32 slot) external returns (uint);
+    /// Get the storage slot index of one item of a map
+    function getMappingSlotAt(address target, bytes32 slot, uint256 idx) external returns (bytes32);
+    /// 
+    function getMappingKeyOf(address target, bytes32 slot) external returns (uint);
+    /// Get the slot below which map in a contract
+    function getMappingParentOf(address target, bytes32 slot) external returns (bytes32);
+```
+
+### Todo
+update the interface name, as they also can used in array.
+
 ### Notable Mentions
 
 - [femplate](https://github.com/refcell/femplate)
