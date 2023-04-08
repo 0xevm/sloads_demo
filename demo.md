@@ -140,3 +140,6 @@ $ forge test --debug testRecordMapping
 ## 另外一个项目
 队友来讲
 
+
+# reference
+* https://takenobu-hs.github.io/downloads/ethereum_evm_illustrated.pdf
