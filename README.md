@@ -4,9 +4,24 @@ A demo for test smart contract's dynamic data's storage slot's, such as array, m
 
 ### Usage
 
-**Install Forge**
+**Install Modified Forge**
 
-see https://getfoundry.sh/
+```sh
+$ git clone https://github.com/0xevm/foundry.git
+
+$ cd foundry
+  
+$ git checkout beijing-eth
+
+$ cargo build --release -p foundry-cli --bin forge
+
+# !! update the PATH to your foundry build release path
+$ export PATH="/Users/flyq/workspace/github/0xevm/foundry/target/release:$PATH"
+
+# confirm the forge is the modified forge
+$ which forge
+/Users/flyq/workspace/github/0xevm/foundry/target/release/forge
+```
 
 **Building & Testing**
 
@@ -19,33 +34,17 @@ $ forge test -vvv
 **Get the storage slot**
 ```sh
 $ forge inspect ./src/RecordMapping.sol:RecordMapping storage --pretty
+| Name       | Type                                         | Slot | Offset | Bytes | Contract                            |
+| ---------- | -------------------------------------------- | ---- | ------ | ----- | ----------------------------------- |
+| length     | int256                                       | 0    | 0      | 32    | src/RecordMapping.sol:RecordMapping |
+| data       | mapping(address => int256)                   | 1    | 0      | 32    | src/RecordMapping.sol:RecordMapping |
+| nestedData | mapping(int256 => mapping(int256 => int256)) | 2    | 0      | 32    | src/RecordMapping.sol:RecordMapping |
 ```
 
 **Debug to see the stack&memory&storage**
 
 ```sh
 $ forge test --debug testRecordMapping
-```
-
-**Test with new Forge**
-```sh
-$ cd foundry/
-
-$ cargo build --release -p foundry-cli --bin forge   
-
-
-
-$ cd sloads_demo/
-
-# !! update the PATH to your foundry build release path
-$ export PATH="/Users/flyq/workspace/github/0xevm/foundry/target/release:$PATH"
-
-$ forge clean
-
-$ forge install 0xevm/forge-std-new
-
-$ forge test -vvv
-
 ```
 
 ### New cheatcode
@@ -58,10 +57,13 @@ $ forge test -vvv
     /// @param `target`, the address of smart contract.
     /// @param `slot`, the slot of a map or a array.
     function getMappingLength(address target, bytes32 slot) external returns (uint);
+
     /// Get the storage slot index of one item of a map
     function getMappingSlotAt(address target, bytes32 slot, uint256 idx) external returns (bytes32);
-    /// 
+
+    /// Get the map item's key in the slot.
     function getMappingKeyOf(address target, bytes32 slot) external returns (uint);
+    
     /// Get the slot below which map in a contract
     function getMappingParentOf(address target, bytes32 slot) external returns (bytes32);
 ```
