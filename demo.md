@@ -33,7 +33,9 @@ $ forge inspect ./src/RecordMapping.sol:RecordMapping storage --pretty
 
 ### Foundry
 
-Foundry 是一个比较流行的以太坊框架。
+Foundry 是一个 Paradigm 主导的，比较流行的以太坊框架。它可以使用 solidity 来写 Test & Script。
+
+https://github.com/foundry-rs/
 
 ## 我们的工作
 
@@ -42,6 +44,8 @@ Foundry 是一个比较流行的以太坊框架。
 某个合约，经过一些交易之后它的 Storage 布局是怎样的？
 
 我们修改了 Foundry， 提交了 PR，： https://github.com/foundry-rs/foundry/pull/4710/files
+
+![](pic/pr.png)
 
 ## demo 演示
 
@@ -122,3 +126,17 @@ Logs:
 
 Test result: ok. 1 passed; 0 failed; finished in 4.17ms
 ```
+
+## 接下来的工作
+```sh
+$ forge inspect ./src/RecordMapping.sol:RecordMapping storage --pretty
+
+$ forge test --debug testRecordMapping
+
+```
+
+![](pic/debug.png)
+
+## 另外一个项目
+队友来讲
+
