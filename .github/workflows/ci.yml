@@ -10,15 +10,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: nightly
       - name: dependencies
         run: |
           git clone https://github.com/0xevm/foundry.git
           cd foundry
           git checkout beijing-eth
           cargo build --release -p foundry-cli --bin forge
-          export PATH="$(pwd)/target/release:$PATH"
       - name: tests
-        run:  forge test -vvvvv
+        run:  ./foundry/target/release/forge test -vvvvv
